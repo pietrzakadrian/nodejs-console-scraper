@@ -1,17 +1,18 @@
 import puppeteer, { Browser } from "puppeteer";
+import { logger } from "../utils";
 
 export async function startBrowser(): Promise<Browser> {
   let browser;
 
   try {
-    console.log("Opening the browser......");
+    logger.info("Opening the browser");
 
     browser = await puppeteer.launch({
       args: ["--disable-setuid-sandbox"],
       ignoreHTTPSErrors: true,
     });
   } catch (err) {
-    console.log("Could not create a browser instance => : ", err);
+    logger.error("Could not create a browser instance: ", err);
   }
 
   return browser;

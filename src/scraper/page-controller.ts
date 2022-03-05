@@ -1,5 +1,6 @@
 import { Browser } from "puppeteer";
 import { TimeTableResponse } from "../interfaces";
+import { logger } from "../utils";
 import { scraper } from "./page-scraper";
 
 export async function scrapeAll(
@@ -11,7 +12,7 @@ export async function scrapeAll(
   try {
     timeTable = await scraper(browser, URL);
   } catch (err) {
-    console.log("Could not resolve the browser instance => ", err);
+    logger.error("Could not create a browser instance: ", err);
   }
 
   return timeTable;

@@ -26,25 +26,42 @@ export const handler = async ({ URL }: Arguments<Options>): Promise<void> => {
     "Select the day of the week number: "
   );
 
-  const selectedSchedule = schedule.filter(
-    (item) => item[1] === weekdays[selectedWeekday]
+  const selectedSchedule = schedule.filter((item) =>
+    [item[0], item[1]].includes(weekdays[selectedWeekday])
   );
 
   selectedSchedule.forEach((item) => {
-    const classDay = new ClassDay(
-      item[0],
-      item[1],
-      item[2],
-      item[3],
-      item[4],
-      item[5],
-      item[6],
-      item[7]
-    );
+    let classDay;
 
-    process.stdout.write(
-      `date: ${classDay.date} | day: ${classDay.day} | from: ${classDay.from} | to: ${classDay.to} | subject: ${classDay.subject} | type: ${classDay.type} | teacher: ${classDay.teacher} | classroom: ${classDay.classroom}\n`
-    );
+    switch (item.length) {
+      case 8: {
+        classDay = new ClassDay(
+          item[1],
+          item[4],
+          item[5],
+          item[6],
+          item[2],
+          item[3],
+          item[0],
+          item[7]
+        );
+
+        process.stdout.write(
+          `date: ${classDay.date} | day: ${classDay.day} | from: ${classDay.from} | to: ${classDay.to} | subject: ${classDay.subject} | type: ${classDay.type} | teacher: ${classDay.teacher} | classroom: ${classDay.classroom}\n`
+        );
+
+        break;
+      }
+
+      case 4: {
+        classDay = new ClassDay(item[0], item[1], item[2], item[3]);
+
+        process.stdout.write(
+          `day: ${classDay.day} | subject: ${classDay.subject} | type: ${classDay.type} | teacher: ${classDay.teacher}\n`
+        );
+        break;
+      }
+    }
   });
 
   process.exit(0);

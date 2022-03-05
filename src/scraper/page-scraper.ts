@@ -1,5 +1,6 @@
 import { Browser } from "puppeteer";
 import { TimeTableResponse } from "../interfaces";
+import { logger } from "../utils";
 
 export async function scraper(
   browser: Browser,
@@ -8,7 +9,7 @@ export async function scraper(
   const data: TimeTableResponse = {};
   const page = await browser.newPage();
 
-  console.log(`Navigating to ${URL}...`);
+  logger.info(`Navigating to ${URL}`);
 
   await page.goto(URL);
   await page.waitForSelector("#table_details");
