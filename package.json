@@ -1,0 +1,21 @@
+{
+  "name": "lab01",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "npx tsc"
+  },
+  "author": "Adrian Pietrzak",
+  "license": "MIT",
+  "dependencies": {
+    "puppeteer": "^13.4.1",
+    "readline-sync": "^1.4.10",
+    "yargs": "^17.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.21",
+    "@types/puppeteer": "^5.4.5",
+    "@types/yargs": "^17.0.9",
+    "@types/readline-sync": "^1.4.4",
+    "typescript": "^4.6.2"
+  }
+}
