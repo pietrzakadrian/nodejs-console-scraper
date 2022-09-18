@@ -29,7 +29,7 @@ export async function scraper(
       )
   );
 
-  browser.close();
+  await browser.close();
 
   return data;
 }

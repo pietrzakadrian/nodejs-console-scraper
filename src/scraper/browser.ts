@@ -2,7 +2,7 @@ import puppeteer, { Browser } from "puppeteer";
 import { logger } from "../utils";
 
 export async function startBrowser(): Promise<Browser> {
-  let browser;
+  let browser: Browser;
 
   try {
     logger.info("Opening the browser");
